@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../src/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>React Starter</title>
+</head>
+
+<body>
+    <!-- Root react el -->
+    <div id="root"></div>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <!-- The reason webpack bundle.js not found because you need to specify absolute path in index.html. Say suppose your bundle.js and index.html is generated under dist folder then it should be something like below -->
+    <!-- this should be the same path as publicPath, Rememeber webpack will append the Public Path here so the path should be absolute .. bundle.js is served from webpack virtual in memory  -->
+    <script src="/bundle.js"></script> 
+</body>
+
+</html>
