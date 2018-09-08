@@ -1,27 +1,35 @@
-import React, { Component } from "react";
-// import Prop-types from 'Prop-types';
-https://hackernoon.com/react-stateless-functional-components-nine-wins-you-might-have-overlooked-997b0d933dbc
-// Functional Component (or) Dumb Component
+import React from 'react';
+import { shape, bool, func } from 'prop-types';
+import { connect } from 'react-redux';
+import Types from '../redux/types';
+import { addMessages, addUser} from '../actions';
 
-//Stateless functional components are useful for dumb/presentational components. 
-//Stateless functional components don’t support state or lifecycle methods
-//
- const AddMessage = (props) => {
-     let input;
-    const handleKeyPress = (input) => {
-        if(input.key === 'Enter'){
-            props.dispatch('Sangeetha',input.value);
-            input.value = '';
-        }
-      
+class AddMessages extends React.Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
+        <input  id="new-message" placeholder="Please type your message"  onKeyPress = {(e) => { 
+            console.log(e.target.value);
+            if(e.key === 'Enter'){
+            this.props.handleAddMessage(e.target.value,'Sangeetha');
+            e.target.value = '';
+        } 
     }
-    
-    return(
-        <input  id="new-message"
-        onKeyPress = {(e) => handleKeyPress(e)}
-        type="text"
-        />
+}/>
     );
+  }
 }
 
-export default AddMessage;
+//The reducers take care of creating a new state when an action is dispatched. 
+
+const mapDispatchToProps = dispatch => ({
+  handleAddMessage: (message,author) => {
+    dispatch(addMessages(message,author));
+    dispatch(addUser(author));
+  },
+});
+
+export default connect(()=>({}), mapDispatchToProps)(AddMessages);

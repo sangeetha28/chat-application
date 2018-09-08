@@ -3,14 +3,16 @@ import { hot } from "react-hot-loader";
 import "./styles.css";
 // only for named exports
 import  AddMessage  from './components/AddMessage';
+import MessageList from "./components/MessageList";
+import SideBar from "./components/Sidebar";
 
 class App extends React.Component {
   render() {
     return (
-      <div id="container">
-      <div id="sidebar">Users </div>
+      <div id="container"> 
+      <SideBar />       
       <section id="main">
-          <div id="messages-list">Messages list</div>
+          <MessageList />
           <AddMessage />
         </section>
         </div>
